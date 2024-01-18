@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import filedialog
-
 try:
     from goit_project.main import PersonalAssistant,Record,Birthday,CleanFolder
     from goit_project.notes import NoteBook,Note,Path
