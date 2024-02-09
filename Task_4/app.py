@@ -12,6 +12,12 @@ def index():
     file = '/index.html'
     return render_template(file)
 
+@app.route('/blog')
+def blog():
+    file = '/blog.html'
+    return render_template(file)
+
+
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     file = '/contact.html'
@@ -61,18 +67,23 @@ def run_socket_server():
         # Convert the JSON string back to a list
         data = json.loads(data)
 
-        # Check if the directory exists and create it if it doesn't
+        # Save the data to a JSON file
+        data_file = 'Task_4/storage/data.json'
         if not os.path.exists('Task_4/storage'):
             os.makedirs('Task_4/storage')
 
         # Check if the file exists and create it if it doesn't
-        if not os.path.isfile('Task_4/storage/data.json'):
-            with open('Task_4/storage/data.json', 'w') as f:
+        if not os.path.isfile(data_file):
+            with open(data_file, 'w') as f:
                 json.dump({}, f)
 
-        # Save the data to a JSON file
-        with open('Task_4/storage/data.json', 'a') as f:
-            json.dump({str(datetime.now()): data}, f)
+        with open(data_file, 'r') as f:
+            current_data = json.load(f)
+
+        current_data[str(datetime.now())] = data
+
+        with open(data_file, 'w') as f:
+            json.dump(current_data, f)
 
 if __name__ ==  '__main__':
     # Run the Flask app and the socket server in different threads
