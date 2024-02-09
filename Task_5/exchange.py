@@ -34,6 +34,13 @@ def process_data(data):
     return {date: result}
 
 async def main(days):
+    
+    if days > 1:
+        if days > 10:
+            print('Reached max amount of days')
+            days = 10  # Default max days
+    else:
+        days = 1  # Default 
     tasks = []
     for i in range(days):
         date = datetime.now() - timedelta(days=i)
@@ -48,12 +55,5 @@ async def main(days):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        if int(sys.argv[1]) > 10:
-            print('Reached max amount of days')
-            days = 10  # Default max days
-        else:
-            days = int(sys.argv[1]) 
-    else:
-        days = 1  # Default 
+    days = int(sys.argv[1])
     asyncio.run(main(days))
