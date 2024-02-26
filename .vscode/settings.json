@@ -3,12 +3,12 @@
         {
             "previewLimit": 50,
             "server": "localhost",
-            "port": 5432,
+            "port": 6543,
             "driver": "PostgreSQL",
-            "name": "Postgres Local",
-            "database": "postgres",
+            "name": "postgres",
             "username": "postgres",
-            "password": "password123"
+            "password": "qwerty123",
+            "database": "postgres"
         }
     ]
 }
