@@ -6,10 +6,10 @@ import json
 
 
 # Your connection code
-uri = "mongodb+srv://testuser:XLvxVCakGPtvmeSx@testdb.qksxmsr.mongodb.net/?retryWrites=true&w=majority"
-client = MongoClient(uri, server_api=ServerApi('1'))
+url = "mongodb+srv://testuser:XLvxVCakGPtvmeSx@testdb.qksxmsr.mongodb.net/?retryWrites=true&w=majority"
+client = MongoClient(url, server_api=ServerApi('1'))
 
-register_connection(alias='default', name='Task_8', host=uri)
+register_connection(alias='default', name='Task_8', host=url)
 # Send a ping to confirm a successful connection
 try:
     client.admin.command('ping')
@@ -20,7 +20,7 @@ except Exception as e:
 
 # Author model
 class Author(Document):
-    fullname = StringField(required=True)
+    full_name = StringField(required=True)
     born_date = StringField()
     born_location = StringField()
     description = StringField()
@@ -28,15 +28,15 @@ class Author(Document):
 # Quote model
 class Quote(Document):
     tags = ListField(StringField())
-    author = ReferenceField(Author)
-    quote = StringField()
+    author_name = ReferenceField(Author)
+    quote_text = StringField()
 
 #Load json files 
 def load_data():
-    with open('Task_8/authors.json', 'r', encoding='utf-8') as f:
+    with open('Task_8/task1/authors.json', 'r', encoding='utf-8') as f:
         authors_data = json.load(f)
 
-    with open('Task_8/quotes.json', 'r', encoding='utf-8') as f:
+    with open('Task_8/task1/quotes.json', 'r', encoding='utf-8') as f:
         quotes_data = json.load(f)
 
 
@@ -45,9 +45,9 @@ def load_data():
         a.save()
 
     for quote in quotes_data:
-        author = Author.objects(fullname=quote['author']).first()
-        del quote['author']  # Remove the 'author' key from the quote dictionary
-        q = Quote(author=author, **quote)
+        author = Author.objects(full_name=quote['author_name']).first()
+        del quote['author_name']  # Remove the 'author' key from the quote dictionary
+        q = Quote(author_name=author, **quote)
         q.save()
 
 
@@ -57,22 +57,22 @@ def main():
         command = input('Enter command: ')
         if command.startswith('name:'):
             name = command.split(':')[1].strip()
-            author = Author.objects(fullname=name).first()
+            author = Author.objects(full_name=name).first()
             if author:
-                quotes = Quote.objects(author=author)
+                quotes = Quote.objects(author_name=author)
                 for quote in quotes:
                     print(quote.quote)
         elif command.startswith('tag:'):
             tag = command.split(':')[1].strip()
             quotes = Quote.objects(tags=tag)
             for quote in quotes:
-                print(quote.quote)
+                print(quote.quote_text)
         elif command.startswith('tags:'):
             tags = command.split(':')[1].split(',')
             tags = [tag.strip() for tag in tags]  # Remove spaces
             quotes = Quote.objects(tags__in=tags)
             for quote in quotes:
-                print(quote.quote)
+                print(quote.quote_text)
         elif command == 'exit':
             break
 
