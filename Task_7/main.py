@@ -3,7 +3,7 @@ from sqlalchemy import create_engine, DateTime, String, ForeignKey, func
 from sqlalchemy.orm import sessionmaker, declarative_base, relationship, backref
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-engine = create_engine('postgresql://postgres:qwerty123@localhost:6543/postgres')
+engine = create_engine('postgresql://postgres:qwerty123@localhost:5432/postgres')
 
 DBSession = sessionmaker(bind=engine) # Abstract sessions factory
 
@@ -52,9 +52,6 @@ def init_db():
     Base.metadata.bind = engine
 
 
-#def show_db():
-
-
 
 def drop_db():
     with DBSession() as session:
@@ -73,8 +70,8 @@ def reset_db():
 
 if __name__ == "__main__":
     reset_db()
-    init_db()
-    #drop_db()
+    #init_db()
+    drop_db()
 
 
 

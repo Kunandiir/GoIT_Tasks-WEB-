@@ -80,7 +80,12 @@ if __name__ == "__main__":
         print("New quotes saved to quotes.json")
 
     # Save new authors to a separate JSON file
-    with open('Task_9/bs/authors.json', 'w', encoding='utf-8') as authors_file:
+    with open('Task_9/authors.json', 'w', encoding='utf-8') as authors_file:
         json.dump(all_authors, authors_file, ensure_ascii=False, indent=4)
         print("New authors saved to authors.json")
+
+
+
+
+
 

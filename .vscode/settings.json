@@ -3,12 +3,12 @@
         {
             "previewLimit": 50,
             "server": "localhost",
-            "port": 6543,
+            "port": 5432,
             "driver": "PostgreSQL",
-            "name": "postgres",
+            "name": "Task_10",
+            "database": "postgres",
             "username": "postgres",
-            "password": "qwerty123",
-            "database": "postgres"
+            "password": "qwerty123"
         }
     ]
 }

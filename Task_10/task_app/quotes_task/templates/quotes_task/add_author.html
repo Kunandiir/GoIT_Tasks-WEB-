@@ -1,0 +1,54 @@
+{% extends 'quotes_task/base.html' %}
+
+
+{% block content %}
+<div class="container mt-3">
+    <h2>Add Author</h2>
+
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <span {% if message.tags %} class="alert alert-{{ message.tags}}"{% endif %}>{{message}}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if form.errors and form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+        {{form.non_field_errors}}
+    </div>
+    {% endif %}
+
+
+    <form action="{% url 'quotes_task:add_author' %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Name
+            {{ form.full_name }}
+            </label>
+            <span>{{ form.errors.full_name }}</span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Born date</label>
+            <div>{{ form.born_date }}</div>
+            
+            
+            <span>{{ form.errors.born_date }}</span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Born location
+            {{ form.born_location }}
+            </label>
+            <span>{{ form.errors.born_location }}</span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            {{ form.description }}
+            <span>{{ form.errors.description }}</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </form>
+</div>
+{% endblock %}
