@@ -1,1 +1,6 @@
 engine = create_engine('postgresql://postgres:qwerty123@localhost:5432/postgres')
+Добрий вечір вже децілька днів не можу вирішити проблему тому ось посилання на проект(https://github.com/Kunandiir/GoIT_Tasks-WEB-/tree/main/Task_10/task_app). А проблема заключається в тому що коли я намагаюся додати цитату через форму виникає помилка з тим що модуль потребує обєкт Author, я намагався це вирышити додавши до views.py:             
+author_name = form.cleaned_data['author']
+author = Author.objects.get(full_name=author_name)
+form.author = author: 
+але воно чогось всеодно хоче зберегти його як стрінгу. Які будуть поради як це вирішити?

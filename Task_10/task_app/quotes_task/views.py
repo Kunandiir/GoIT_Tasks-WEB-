@@ -5,7 +5,8 @@ from .models import Quote,Author
 # Create your views here.
 
 def index(request):
-    return render(request, template_name='quotes_task/index.html', context={'msg':'Hello World'})
+    quotes = Quote.objects.all()
+    return render(request, template_name='quotes_task/index.html', context={'qoutes': quotes})
 
 
 def add_quote(request):
@@ -14,15 +15,13 @@ def add_quote(request):
         form = QuoteForm(request.POST, instance=Quote())
         
         if form.is_valid():
-            quote = form.save()
+            #quote = form.save()
             
             
-            author_name = form.cleaned_data['author']
-            author = Author.objects.get(full_name=author_name)
-            # Associate the author with the quote
-            
-            quote.author = author
-            quote.save()
+            #author_name = form.cleaned_data['author']
+            #author = Author.objects.get(full_name=author_name)
+            #form.author = author
+            form.save()
             return redirect(to='quotes_task:home')
     return render(request, template_name='quotes_task/add_quote.html', context={'form': form})
 
