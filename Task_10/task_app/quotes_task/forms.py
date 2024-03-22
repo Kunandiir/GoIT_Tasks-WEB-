@@ -16,11 +16,10 @@ class QuoteForm(ModelForm):
     def clean_author(self):
         author_name = self.cleaned_data.get('author')
         try:
-            Author.objects.get(full_name=author_name)
-            #raise forms.ValidationError(f"Author '{Author.objects.get(full_name=author_name)}'  ")
+            author_instance = Author.objects.get(full_name=author_name)
         except Author.DoesNotExist:
             raise forms.ValidationError(f"Author '{author_name}' does not exist. Consider adding a new author.")
-        return author_name
+        return author_instance
     
     
 class AuthorForm(ModelForm):

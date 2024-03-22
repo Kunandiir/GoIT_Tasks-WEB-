@@ -6,7 +6,7 @@ import json
 
 
 # Your connection code
-url = "mongodb+srv://testuser:XLvxVCakGPtvmeSx@testdb.qksxmsr.mongodb.net/?retryWrites=true&w=majority"
+url = "mongodb+srv://testuser:y2H_Q5At4P5HB3B@testdb.qksxmsr.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(url, server_api=ServerApi('1'))
 
 register_connection(alias='default', name='Task_8', host=url)
@@ -78,4 +78,5 @@ def main():
 
 if __name__ == "__main__":
     #load_data()
-    main()
+    #main()
+    pass

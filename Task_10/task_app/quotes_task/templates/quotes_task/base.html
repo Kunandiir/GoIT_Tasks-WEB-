@@ -11,6 +11,7 @@
 <body>
     <div class="container">
         <div class="row header-box">
+            <div class="row">
             <div class="col-md-8">
                 <h1>
                     <a href="{% url 'quotes_task:home' %}" style="text-decoration: none">Quotes to Scrape</a>
@@ -35,16 +36,16 @@
         {% block content %}
         {% endblock %}
     </div>
-    
+    </div>  
     <footer class="footer">
-        <div class="container">
-            <p class="text-muted">
-                Quotes by: <a href="https://www.goodreads.com/quotes">GoodReads.com</a>
-            </p>
-            <p class="copyright">
-                Made with <span class="zyte">❤</span> by <a class="zyte" href="https://www.zyte.com">Zyte</a>
-            </p>
-        </div>
+            <div class="container">
+                <p class="text-muted">
+                    Quotes by: <a href="https://www.goodreads.com/quotes">GoodReads.com</a>
+                </p>
+                <p class="copyright">
+                    Made with <span class="zyte">❤</span> by <a class="zyte" href="https://www.zyte.com">Zyte</a>
+                </p>
+            </div></div>
     </footer>
 
 </body>

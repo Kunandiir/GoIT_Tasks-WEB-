@@ -1,0 +1,15 @@
+{% extends 'quotes_task/base.html' %}
+
+{% block content %}
+
+    <div class="author-details">
+        <h3 class="author-title">{{ author.full_name }}</h3>
+        <strong>Born:</strong> 
+                <span class="author-born-date">{{ author.born_date }}</span>
+            <span class="author-born-location">{{ author.born_location }}</span>
+        <div><strong>Description:</strong></div>
+        <div class="author-description">
+            {{ author.description }}
+        </div>
+    </div>
+{% endblock %}
