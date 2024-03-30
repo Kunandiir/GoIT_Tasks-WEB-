@@ -9,6 +9,16 @@
             "database": "postgres",
             "username": "postgres",
             "password": "qwerty123"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Task_11",
+            "database": "task_11",
+            "username": "postgres",
+            "password": "qwerty123"
         }
     ]
 }
