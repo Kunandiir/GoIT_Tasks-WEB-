@@ -1,4 +1,5 @@
 from pydantic import BaseModel, EmailStr, Field
+from datetime import date
 
 
 class ContactSchema(BaseModel):
@@ -6,7 +7,7 @@ class ContactSchema(BaseModel):
     last_name: str = Field(max_length=50)
     email: EmailStr = Field()
     phone_number: str = Field()
-    birthday: str = Field()
+    birthday: date = Field()
 
 
 class ContactUpdateSchema(ContactSchema):
@@ -19,7 +20,7 @@ class ContactResponse(BaseModel):
     last_name: str
     email: EmailStr 
     phone_number: str 
-    birthday: str 
+    birthday: date 
 
     class Config:
         from_attributes = True
