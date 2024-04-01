@@ -1,11 +1,13 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.routes import contacts
+from src.routes import contacts, auth
+
 from src.database.db import get_db
 from sqlalchemy import text
 app = FastAPI()
 
+app.include_router(auth.router, prefix="/api")
 app.include_router(contacts.router, prefix="/api")
 
 @app.get('/')
