@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, relationship
-from sqlalchemy import String, Date, Integer, ForeignKey, DateTime, func
+from sqlalchemy import String, Date, Integer, ForeignKey, DateTime, func, Boolean
 from datetime import date
 
 
@@ -32,4 +32,4 @@ class User(Base):
     refresh_token = mapped_column(String(255), nullable=True)
     created_at = mapped_column(DateTime, default=func.now())
     updated_at = mapped_column(DateTime, default=func.now(), onupdate=func.now())
-    
+    confirmed = mapped_column(Boolean, default=False, nullable=True)
