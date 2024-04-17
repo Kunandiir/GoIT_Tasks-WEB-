@@ -4,11 +4,17 @@ from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
-
+from django.contrib.auth import views as auth_views
 from .forms import RegisterForm
 
 
-# Create your views here.
+class MyPasswordResetView(auth_views.PasswordResetView):
+    success_url = "done"
+
+
+class MyPasswordResetConfirmView(auth_views.PasswordResetConfirmView):
+    success_url = "complete"
+
 
 class RegisterView(View):
     template_name = 'auth_task/register.html'
