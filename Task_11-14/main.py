@@ -1,3 +1,4 @@
+from pathlib import Path
 from fastapi import FastAPI, Depends, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, HTMLResponse
@@ -52,7 +53,9 @@ async def user_agent_ban_middleware(request: Request, call_next: Callable):
     response = await call_next(request)
     return response """
 
-app.mount("/static", StaticFiles(directory='src/static'), name='static')
+BASE_DIR = Path(__file__).parent
+directory = BASE_DIR.joinpath('src').joinpath('static')
+app.mount("/static", StaticFiles(directory=directory), name='static')
 
 app.include_router(auth.router, prefix="/api")
 app.include_router(contacts.router, prefix="/api")
