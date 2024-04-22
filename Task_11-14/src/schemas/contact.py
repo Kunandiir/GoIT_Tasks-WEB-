@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 from datetime import date, datetime
 from src.schemas.user import UserResponse, UserSchema, TokenSchema
 
@@ -25,6 +25,5 @@ class ContactResponse(BaseModel):
     created_at: datetime | None
     updated_at: datetime | None
     #user: UserResponse | None
-
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes = True)
+        

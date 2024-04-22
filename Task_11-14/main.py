@@ -24,6 +24,7 @@ app = FastAPI()
 origins = ["*"]
 
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -63,6 +64,7 @@ app.include_router(users.router, prefix="/api")
 
 @app.on_event("startup")
 async def startup():
+    limiter.init(app)
     r = await redis.Redis(host=config.REDIS_DOMAIN, port=config.REDIS_PORT, db=0,password=config.REDIS_PASSWORD, encoding="utf-8", decode_responses=True)
     await FastAPILimiter.init(r)
 

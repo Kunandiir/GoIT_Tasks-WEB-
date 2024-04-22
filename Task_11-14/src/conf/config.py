@@ -6,20 +6,6 @@ import os
 load_dotenv()
 
 class Settings(BaseSettings):
-    '''    DB_URL: str 
-    SECRET_KEY_JWT: str 
-    ALGORITHM: str
-    MAIL_USERNAME: EmailStr 
-    MAIL_PASSWORD: str
-    MAIL_FROM: str 
-    MAIL_PORT: int 
-    MAIL_SERVER: str 
-    REDIS_DOMAIN: str 
-    REDIS_PORT: int = 6379
-    REDIS_PASSWORD: str = None
-    CLD_NAME: str
-    CLD_API_KEY: int
-    CLD_API_SECRET: str'''
     DB_URL: str = os.getenv('DB_URL')
     SECRET_KEY_JWT: str = os.getenv('SECRET_KEY_JWT')
     ALGORITHM: str = os.getenv('ALGORITHM')
