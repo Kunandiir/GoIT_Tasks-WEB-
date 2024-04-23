@@ -7,6 +7,7 @@ from src.database.db import get_db
 from src.entity.models import User
 from src.repository import contacts as repositories_contacts
 from src.schemas.contact import ContactResponse, ContactSchema,ContactUpdateSchema
+from src.conf import messages
 router = APIRouter(prefix='/contacts', tags=['contacts'])
 
 
@@ -20,7 +21,7 @@ async def get_contacts(offset: int = 0, limit: int = 100, db: AsyncSession = Dep
 async def get_contact(contact_id: int, db: AsyncSession = Depends(get_db), user: User = Depends(auth_service.get_current_user)):
     contact = await repositories_contacts.get_contact(contact_id, db, user)
     if contact is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='NOT FOUND')
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=messages.NOT_FOUND)
     return contact
 
 @router.post("/", response_model=ContactResponse, status_code=status.HTTP_201_CREATED, description='No more than 20 requests per minute', dependencies=[Depends(RateLimiter(times=20, seconds=60))])
@@ -33,7 +34,7 @@ async def create_contact(body: ContactSchema, db: AsyncSession = Depends(get_db)
 async def update_contact(body: ContactUpdateSchema, contact_id: int = Path(ge=1), db: AsyncSession = Depends(get_db), user: User = Depends(auth_service.get_current_user)):
     contact = await repositories_contacts.update_contact(contact_id, body, db, user)
     if contact is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='NOT FOUND')
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=messages.NOT_FOUND)
     return contact
 
 

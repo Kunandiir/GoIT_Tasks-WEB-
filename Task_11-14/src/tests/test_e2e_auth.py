@@ -31,9 +31,9 @@ def test_repeat_signup(client, monkeypatch):
     mock_send_email = Mock()
     monkeypatch.setattr("src.routes.auth.send_email", mock_send_email)
     response = client.post("api/auth/signup", json=user_data)
-    assert response.status_code == 409
+    assert response.status_code == 409, response.json()
     data = response.json()
-    assert data == messages.ACCOUNT_EXISTS
+    assert data["detail"] == messages.ACCOUNT_EXISTS
 
 
 def test_not_confirmed_login(client):
