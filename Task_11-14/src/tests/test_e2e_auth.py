@@ -76,3 +76,6 @@ def test_validation_error(client):
     assert response.status_code == 422, response.text
     data = response.json()
     assert "detail" in data
+
+
+
